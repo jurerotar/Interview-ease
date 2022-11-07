@@ -1,0 +1,10 @@
+.topic {
+  counter-reset: question;
+  & h3:first-of-type {
+    &::before {
+      counter-increment: question;
+      content: counter(question) '.';
+      margin-right: 0.5rem;
+    }
+  }
+}
