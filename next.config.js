@@ -1,5 +1,4 @@
 const dotenv = require('dotenv');
-const { i18n } = require('./nextI18n.config');
 
 dotenv.config();
 
@@ -10,7 +9,6 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   trailingSlash: false,
-  i18n,
   typescript: {
     ignoreBuildErrors: NEXT_PUBLIC_ENVIRONMENT === 'local'
   },

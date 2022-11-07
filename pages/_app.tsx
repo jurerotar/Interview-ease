@@ -6,7 +6,6 @@ import Head from 'next/head';
 import { PreferencesProvider } from '@providers/preferences-context';
 import { ApplicationProvider } from '@providers/application-context';
 import Layout from '@components/layout/layout';
-import { appWithTranslation } from 'next-i18next';
 
 const montserrat = Montserrat();
 
@@ -40,4 +39,4 @@ const App: React.FC<AppProps> = (props) => {
   );
 };
 
-export default appWithTranslation(App);
+export default App;
