@@ -9,7 +9,7 @@ type Size = {
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState<Size>({
     width: undefined,
-    height: undefined,
+    height: undefined
   });
 
   const [isXsUp, setIsXsUp] = useState<boolean>(false);
@@ -30,7 +30,7 @@ const useWindowSize = () => {
 
       setWindowSize({
         width,
-        height,
+        height
       });
       setIsXsUp(width >= breakpoints.xs);
       setIsXsDown(width < breakpoints.xs);
@@ -60,7 +60,7 @@ const useWindowSize = () => {
     isLgUp,
     isLgDown,
     isXlUp,
-    isXlDown,
+    isXlDown
   };
 };
 

@@ -21,7 +21,7 @@ function Document() {
 Document.getInitialProps = async (context: DocumentContext): Promise<DocumentInitialProps> => {
   const initialProps = await NextDocument.getInitialProps(context);
   return {
-    ...initialProps,
+    ...initialProps
   };
 };
 

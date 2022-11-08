@@ -1,5 +1,5 @@
 enum CookieNames {
-  PREFERENCES = 'preferences',
+  PREFERENCES = 'preferences'
 }
 
 export default CookieNames;

@@ -12,7 +12,7 @@ const { JSDOM } = jsdom;
 
 export const transformMarkdownToHTML = async (src: string): Promise<VFile> => {
   const markdown = await readFile(src, {
-    encoding: 'utf-8',
+    encoding: 'utf-8'
   });
 
   return unified()
@@ -20,7 +20,7 @@ export const transformMarkdownToHTML = async (src: string): Promise<VFile> => {
     .use(remarkStringify)
     .use(remarkPrism)
     .use(remarkHtml, {
-      sanitize: false,
+      sanitize: false
     })
     .process(markdown);
 };
@@ -41,7 +41,7 @@ export const splitTopicNodesIntoQuestions = (html: string): Question[] => {
     return {
       question: question?.innerHTML ?? null,
       expectedAnswer: expectedAnswer?.outerHTML ?? null,
-      additional: item.innerHTML,
+      additional: item.innerHTML
     };
   });
 };

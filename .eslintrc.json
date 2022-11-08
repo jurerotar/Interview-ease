@@ -11,7 +11,10 @@
   "extends": ["next/core-web-vitals", "airbnb", "airbnb/hooks", "plugin:tailwindcss/recommended"],
   "plugins": ["tailwindcss"],
   "rules": {
-    "max-len": ["error", { "code": 140 }],
+    "max-len": ["error", {
+      "code": 140,
+      "ignoreStrings": true
+    }],
     "no-prototype-builtins": ["off"],
     "arrow-body-style": ["off", "as-needed"],
     "object-curly-newline": ["off"],
@@ -20,6 +23,7 @@
     "react/function-component-definition": ["off"],
     "react/react-in-jsx-scope": ["off"],
     "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
+    "react/jsx-props-no-spreading": ["off"],
     "react/require-default-props": ["off"]
   }
 }

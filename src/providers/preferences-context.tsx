@@ -24,14 +24,14 @@ const PreferencesProvider: React.FC<PreferencesContextProps> = (props) => {
   useEffect(() => {
     setCookie(CookieNames.PREFERENCES, colorScheme, {
       sameSite: 'lax',
-      maxAge: 3600 * 24 * 12 * 1000,
+      maxAge: 3600 * 24 * 12 * 1000
     });
   }, [colorScheme]);
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value: PreferencesContextValues = {
     colorScheme,
-    setColorScheme,
+    setColorScheme
   };
 
   return <PreferencesContext.Provider value={value}>{children}</PreferencesContext.Provider>;

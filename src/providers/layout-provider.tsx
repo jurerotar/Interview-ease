@@ -20,7 +20,7 @@ const LayoutProvider: React.FC<LayoutContextProps> = (props) => {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value: LayoutContextValues = {
     isModalShown,
-    setIsModalShown,
+    setIsModalShown
   };
 
   return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>;

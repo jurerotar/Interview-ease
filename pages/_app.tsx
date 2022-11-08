@@ -24,7 +24,7 @@ const App: React.FC<AppProps> = (props) => {
             __html: `
           :root {
             --default-font: ${montserrat.className}
-          }`,
+          }`
           }}
         />
       </Head>

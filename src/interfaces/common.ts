@@ -11,3 +11,14 @@ export type Structure = {
   children: Structure[];
   questions: Question[];
 };
+
+export type ParsedQuestion = {
+  question: string;
+  rating?: number;
+  notes?: string;
+};
+
+export type ParsedTopic = {
+  title: string;
+  questions: ParsedQuestion[];
+};

@@ -45,7 +45,7 @@ const ApplicationProvider: React.FC<ApplicationContextProps> = (props) => {
     flattenedTopics,
     selectedTopic,
     setSelectedTopic,
-    structure,
+    structure
   };
 
   return <ApplicationContext.Provider value={value}>{children}</ApplicationContext.Provider>;

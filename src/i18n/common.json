@@ -1,0 +1,29 @@
+{
+  "LAYOUT": {
+    "TOP_BAR": {
+      "EXPORT_BUTTON": {
+        "ACCESSIBILITY_LABEL": "Export data button",
+        "LABEL": "Export"
+      },
+      "MODAL_OPEN_BUTTON": {
+        "ACCESSIBILITY_LABEL": "Open modal button"
+      },
+      "MODAL_CLOSE_BUTTON": {
+        "ACCESSIBILITY_LABEL": "Close modal button"
+      }
+    }
+  },
+  "TOPIC": {
+    "AMOUNT_OF_QUESTIONS": "{amountOfQuestions} questions",
+    "LABELS": {
+      "QUESTION": "Question",
+      "EXPECTED_ANSWER": "Expected rating",
+      "RATING": "Answer rating",
+      "NOTES": "Notes"
+    },
+    "ADD_NEW_QUESTION": {
+      "ADD_FIRST_QUESTION": "Asked a question that's not on the list? Add it here.",
+      "ADD_SUBSEQUENT_QUESTION": "Add an additional question"
+    }
+  }
+}

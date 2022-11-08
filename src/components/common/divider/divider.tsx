@@ -13,7 +13,7 @@ const Divider: React.FC<DividerProps> = (props) => {
     <div
       className={clsx('h-[1px] w-full dark:bg-gray-600', color || '')}
       style={{
-        height: `${height}px`,
+        height: `${height}px`
       }}
     />
   );

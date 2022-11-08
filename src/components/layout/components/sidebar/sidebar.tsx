@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { useLayout } from '@providers/layout-provider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import useTranslation from '@utils/hooks/use-translation';
 
 type SidebarProps = {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ type SidebarProps = {
 const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
   const { children } = props;
 
+  const { t } = useTranslation();
   const { isModalShown, setIsModalShown } = useLayout();
 
   return (
@@ -24,9 +26,11 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
         <div className="flex justify-end lg:hidden">
           <button
             type="button"
+            aria-label={t('LAYOUT.TOP_BAR.MODAL_CLOSE_BUTTON.ACCESSIBILITY_LABEL')}
             onClick={() => setIsModalShown(false)}
           >
             <FontAwesomeIcon
+              aria-hidden
               className="dark:text-white"
               icon={faXmark}
               height={25}

@@ -37,8 +37,8 @@ export const getStaticProps: GetStaticProps<InterviewQuestionsPageProps> = async
 
   return {
     props: {
-      structure: removePropertyDeep(await addQuestionsToStructure(structure), 'path'),
-    },
+      structure: removePropertyDeep(await addQuestionsToStructure(structure), 'path')
+    }
   };
 };
 

@@ -3,7 +3,7 @@ import CookieNames from '@enums/cookie-names';
 
 export const middleware = async (req: NextRequest): Promise<NextResponse> => {
   const response = NextResponse.next();
-  const cookies = req.cookies;
+  const { cookies } = req;
   const preferences = cookies.get(CookieNames.PREFERENCES);
 
   if (!preferences) {
@@ -11,7 +11,7 @@ export const middleware = async (req: NextRequest): Promise<NextResponse> => {
     expirationDate.setFullYear(expirationDate.getFullYear() + 1);
     response.cookies.set(CookieNames.PREFERENCES, 'dark', {
       sameSite: 'lax',
-      maxAge: 3600 * 24 * 12 * 1000,
+      maxAge: 3600 * 24 * 12 * 1000
     });
   }
 
@@ -26,6 +26,6 @@ export const config = {
      * - static (static files)
      * - favicon.ico (favicon file)
      */
-    '/((?!api|static|images).*)',
-  ],
+    '/((?!api|static|images).*)'
+  ]
 };
