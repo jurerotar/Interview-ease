@@ -17,7 +17,8 @@
     "AMOUNT_OF_QUESTIONS": "{amountOfQuestions} questions",
     "LABELS": {
       "QUESTION": "Question",
-      "EXPECTED_ANSWER": "Expected rating",
+      "ADDITIONAL_INFORMATION": "Additional information",
+      "EXPECTED_ANSWER": "Expected answer",
       "RATING": "Answer rating",
       "NOTES": "Notes"
     },

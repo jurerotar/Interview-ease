@@ -76,7 +76,7 @@ const Question: React.FC<QuestionProps> = (props) => {
       </div>
       {!!question?.additional?.replaceAll('\n', '') && (
         <div className="flex flex-col gap-2">
-          <Label>{t('TOPIC.LABELS.EXPECTED_ANSWER')}</Label>
+          <Label>{t('TOPIC.LABELS.ADDITIONAL_INFORMATION')}</Label>
           <MarkdownContainer>
             <div dangerouslySetInnerHTML={{ __html: question.additional }} />
           </MarkdownContainer>
@@ -84,18 +84,18 @@ const Question: React.FC<QuestionProps> = (props) => {
       )}
       {!!question?.expectedAnswer && (
         <div className="flex flex-col gap-2">
-          <Label>{t('TOPIC.LABELS.RATING')}</Label>
+          <Label>{t('TOPIC.LABELS.EXPECTED_ANSWER')}</Label>
           <MarkdownContainer>
             <div dangerouslySetInnerHTML={{ __html: question.expectedAnswer }} />
           </MarkdownContainer>
         </div>
       )}
       <div className="flex flex-col gap-2">
-        <Label>{t('TOPIC.LABELS.NOTES')}</Label>
+        <Label>{t('TOPIC.LABELS.RATING')}</Label>
         <Rating />
       </div>
       <div className="flex flex-col gap-2">
-        <Label htmlFor={`${topicId}-${index}`}>Notes</Label>
+        <Label htmlFor={`${topicId}-${index}`}>{t('TOPIC.LABELS.NOTES')}</Label>
         <TextArea
           id={`${topicId}-${index}`}
           placeholder="..."
