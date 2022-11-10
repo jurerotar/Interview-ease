@@ -11,6 +11,9 @@
       "MODAL_CLOSE_BUTTON": {
         "ACCESSIBILITY_LABEL": "Close modal button"
       }
+    },
+    "SIDEBAR": {
+      "UNCATEGORIZED_TOPICS": "Other"
     }
   },
   "TOPIC": {

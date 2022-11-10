@@ -4,13 +4,19 @@ export type Question = {
   additional: string | null;
 };
 
-export type Structure = {
+export type GroupingStructure = {
+  grouping: string | null;
+  group: string | null;
   name: string;
+}
+
+export type Topic = {
   id: string;
-  path: string;
-  children: Structure[];
-  questions: Question[];
-};
+  name: string;
+  path?: string;
+  groupingStructure?: GroupingStructure;
+  questions?: Question[];
+}
 
 export type ParsedQuestion = {
   question: string;

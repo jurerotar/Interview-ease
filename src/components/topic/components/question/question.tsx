@@ -1,53 +1,10 @@
-import React, { HTMLAttributes, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import clsx from 'clsx';
+import React from 'react';
 import { Question as QuestionType } from '@interfaces/common';
 import TextArea from '@components/common/textarea/textarea';
 import MarkdownContainer from '@components/common/markdown-container/markdown-container';
 import Label from '@components/common/text/label/label';
 import useTranslation from '@utils/hooks/use-translation';
-
-type StarProps = {
-  isSelected: boolean;
-} & HTMLAttributes<HTMLButtonElement>;
-
-const Star: React.FC<StarProps> = (props) => {
-  const { isSelected, ...rest } = props;
-
-  return (
-    <button
-      className={clsx(isSelected ? 'text-yellow-400' : 'text-white')}
-      type="button"
-      {...rest}
-    >
-      <FontAwesomeIcon
-        icon={faStar}
-        width={20}
-        height={20}
-      />
-    </button>
-  );
-};
-
-function Rating() {
-  const [selectedRating, setSelectedRating] = useState<number>(0);
-
-  return (
-    <div
-      className="flex w-fit items-center justify-evenly gap-1"
-      data-rating={selectedRating}
-    >
-      {[1, 2, 3, 4, 5].map((rating: number) => (
-        <Star
-          key={rating}
-          isSelected={rating <= selectedRating}
-          onClick={() => setSelectedRating(rating)}
-        />
-      ))}
-    </div>
-  );
-}
+import Rating from '@components/common/rating/rating';
 
 type QuestionProps = {
   topicId: string;

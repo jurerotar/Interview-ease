@@ -3,14 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faBars } from '@fortawesome/free-solid-svg-icons';
 import { useLayout } from '@providers/layout-provider';
 import useTranslation from '@utils/hooks/use-translation';
-import { download, parseDataFromDOM, stringifyParsedData } from '@utils/helpers';
-
-const exportHandler = (): void => {
-  download('Interview recap.txt', stringifyParsedData(parseDataFromDOM()));
-};
+import Navigation from '@components/layout/components/navigation/navigation';
 
 function TopBar() {
-  const { setIsModalShown } = useLayout();
+  const { openModal } = useLayout();
   const { t } = useTranslation();
 
   return (
@@ -20,7 +16,10 @@ function TopBar() {
           className="flex items-center justify-center gap-2 whitespace-nowrap rounded-md bg-green-500 px-4 py-2 font-semibold text-white transition-colors duration-300 hover:bg-green-600"
           type="button"
           aria-label={t('LAYOUT.TOP_BAR.EXPORT_BUTTON.ACCESSIBILITY_LABEL')}
-          onClick={exportHandler}
+          onClick={() => openModal((
+            <>
+            </>
+          ))}
         >
           {t('LAYOUT.TOP_BAR.EXPORT_BUTTON.LABEL')}
           <FontAwesomeIcon
@@ -34,7 +33,9 @@ function TopBar() {
           className="flex items-center justify-center lg:hidden"
           type="button"
           aria-label={t('LAYOUT.TOP_BAR.MODAL_OPEN_BUTTON.ACCESSIBILITY_LABEL')}
-          onClick={() => setIsModalShown(true)}
+          onClick={() => openModal((
+            <Navigation />
+          ))}
         >
           <FontAwesomeIcon
             aria-hidden

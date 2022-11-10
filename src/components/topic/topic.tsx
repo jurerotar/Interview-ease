@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { removeExtensionFromName } from '@utils/helpers';
 import Divider from '@components/common/divider/divider';
 import { useApplication } from '@providers/application-context';
-import { Structure, Question as QuestionType } from '@interfaces/common';
+import { Question as QuestionType, Topic as TopicType } from '@interfaces/common';
 import Question from '@components/topic/components/question/question';
 import NewQuestionForm from '@components/topic/components/new-question-form/new-question-form';
 import Paragraph from '@components/common/text/paragraph/paragraph';
@@ -11,7 +11,7 @@ import useTranslation from '@utils/hooks/use-translation';
 import styles from './topic.module.scss';
 
 type TopicProps = {
-  topic: Structure;
+  topic: TopicType;
 };
 
 const Topic: React.FC<TopicProps> = (props) => {
@@ -20,11 +20,11 @@ const Topic: React.FC<TopicProps> = (props) => {
 
   const { selectedTopic } = useApplication();
 
-  const [questions, setQuestions] = useState<QuestionType[]>(topic.questions);
+  const [questions, setQuestions] = useState<QuestionType[]>(topic.questions!);
 
   const title: string = removeExtensionFromName(topic.name);
   const amountOfQuestions: number = questions.length;
-  const hasAddedAdditionalQuestions: boolean = topic.questions.length !== questions.length;
+  const hasAddedAdditionalQuestions: boolean = topic.questions!.length !== questions.length;
 
   const addNewQuestion = (question: QuestionType) => {
     setQuestions((prevState) => [...prevState, question]);

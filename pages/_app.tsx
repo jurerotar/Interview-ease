@@ -28,7 +28,7 @@ const App: React.FC<AppProps> = (props) => {
           }}
         />
       </Head>
-      <ApplicationProvider structure={pageProps?.structure ?? []}>
+      <ApplicationProvider topics={pageProps.topics}>
         <PreferencesProvider colorScheme="dark">
           <Layout>
             <Component {...pageProps} />

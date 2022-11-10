@@ -24,6 +24,8 @@
     "react/react-in-jsx-scope": ["off"],
     "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
     "react/jsx-props-no-spreading": ["off"],
-    "react/require-default-props": ["off"]
+    "react/require-default-props": ["off"],
+    "react/jsx-no-useless-fragment": ["off"],
+    "react/prop-types": ["off"]
   }
 }

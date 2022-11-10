@@ -1,7 +1,7 @@
 import React from 'react';
-import TopBar from '@components/layout/top-bar/top-bar';
+import TopBar from '@components/layout/components/top-bar/top-bar';
 import Sidebar from '@components/layout/components/sidebar/sidebar';
-import Navigation from '@components/layout/components/sidebar/components/navigation/navigation';
+import Navigation from '@components/layout/components/navigation/navigation';
 import { LayoutProvider } from '@providers/layout-provider';
 
 type LayoutProps = {
@@ -15,7 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => (
       <Sidebar>
         <Navigation />
       </Sidebar>
-      <main className="mt-16 flex w-full justify-center p-4 lg:ml-[20rem] lg:max-w-[calc(100%-20rem)] xl:mx-[20rem] xl:max-w-[calc(100%-40rem)] 3xl:mx-0 3xl:max-w-full">
+      <main className="mt-16 flex w-full justify-center p-4 lg:ml-[18rem] lg:max-w-[calc(100%-18rem)] xl:mx-[18rem] xl:max-w-[calc(100%-36rem)] 3xl:mx-0 3xl:max-w-full">
         <div className="flex w-full max-w-[800px] rounded-md p-4 dark:bg-[#292D32]">{children}</div>
       </main>
     </div>
