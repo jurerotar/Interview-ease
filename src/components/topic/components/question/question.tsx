@@ -10,10 +10,18 @@ type QuestionProps = {
   topicId: string;
   index: number;
   question: QuestionType;
+  showRatings?: boolean;
+  showNotes?: boolean;
 };
 
 const Question: React.FC<QuestionProps> = (props) => {
-  const { topicId, index, question } = props;
+  const {
+    topicId,
+    index,
+    question,
+    showRatings = true,
+    showNotes = true
+  } = props;
 
   const { t } = useTranslation();
 
@@ -47,17 +55,21 @@ const Question: React.FC<QuestionProps> = (props) => {
           </MarkdownContainer>
         </div>
       )}
-      <div className="flex flex-col gap-2">
-        <Label>{t('TOPIC.LABELS.RATING')}</Label>
-        <Rating />
-      </div>
-      <div className="flex flex-col gap-2">
-        <Label htmlFor={`${topicId}-${index}`}>{t('TOPIC.LABELS.NOTES')}</Label>
-        <TextArea
-          id={`${topicId}-${index}`}
-          placeholder="..."
-        />
-      </div>
+      {showRatings && (
+        <div className="flex flex-col gap-2">
+          <Label>{t('TOPIC.LABELS.RATING')}</Label>
+          <Rating />
+        </div>
+      )}
+      {showNotes && (
+        <div className="flex flex-col gap-2">
+          <Label htmlFor={`${topicId}-${index}`}>{t('TOPIC.LABELS.NOTES')}</Label>
+          <TextArea
+            id={`${topicId}-${index}`}
+            placeholder="..."
+          />
+        </div>
+      )}
     </div>
   );
 };

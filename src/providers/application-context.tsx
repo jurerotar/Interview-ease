@@ -15,9 +15,17 @@ type ApplicationContextValues = {
 const ApplicationContext = createContext<ApplicationContextValues>({} as never);
 
 const ApplicationProvider: React.FC<ApplicationContextProps> = (props) => {
-  const { topics, children } = props;
+  const {
+    topics = [],
+    children
+  } = props;
 
-  const [selectedTopic, setSelectedTopic] = useState<Topic['id']>(topics[0]?.id ?? '');
+  const [selectedTopic, setSelectedTopic] = useState<Topic['id']>(() => {
+    if (Array.isArray(topics) && topics.length > 0) {
+      return topics[0].id;
+    }
+    return '';
+  });
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value: ApplicationContextValues = {

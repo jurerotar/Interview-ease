@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 type StarProps = {
+  value: number;
   isSelected: boolean;
 } & HTMLAttributes<HTMLButtonElement>;
 
@@ -17,6 +18,7 @@ const RatingStar: React.FC<StarProps> = (props) => {
       {...rest}
     >
       <FontAwesomeIcon
+        className="pointer-events-none"
         icon={faStar}
         width={20}
         height={20}

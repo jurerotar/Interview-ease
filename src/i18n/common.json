@@ -1,4 +1,8 @@
 {
+  "COMMON": {
+    "SHOW_MORE": "Show more",
+    "SHOW_LESS": "Show less"
+  },
   "LAYOUT": {
     "TOP_BAR": {
       "EXPORT_BUTTON": {
@@ -27,7 +31,31 @@
     },
     "ADD_NEW_QUESTION": {
       "ADD_FIRST_QUESTION": "Asked a question that's not on the list? Add it here.",
-      "ADD_SUBSEQUENT_QUESTION": "Add an additional question"
+      "ADD_SUBSEQUENT_QUESTION": "Add an additional question",
+      "BUTTON": "Add new question"
     }
+  },
+  "EXPORT": {
+    "EDIT_TAB": {
+      "TAB_LABEL": "Edit",
+      "CANDIDATE_SUMMARY": "Candidate summary",
+      "TOPIC_RATING": "Rate individual topics",
+      "QUESTIONS_RATINGS_AND_NOTES": "Question ratings and notes",
+      "EDIT_TEXTAREA_PLACEHOLDER": "Rate some answers or write some notes to have content appear here."
+    },
+    "PREVIEW_TAB": {
+      "TAB_LABEL": "Preview",
+      "NO_CONTENT_TEXT": "Nothing to preview yet. Rate some answers or topics, or write some notes first."
+    },
+    "REPORT": {
+      "CANDIDATE_SUMMARY": "Candidate summary",
+      "INDIVIDUAL_TOPIC_RATINGS": "Individual topic ratings",
+      "QUESTION_RATINGS": "Question ratings"
+    }
+  },
+  "BUTTONS": {
+    "EMAIL": "Share by email",
+    "DOWNLOAD": "Download",
+    "CLEAR": "Clear"
   }
 }

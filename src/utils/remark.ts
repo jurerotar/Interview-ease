@@ -8,6 +8,7 @@ import jsdom from 'jsdom';
 import { Question, Topic } from '@interfaces/common';
 import dirTree from 'directory-tree';
 import { createHash } from 'crypto';
+import { removeExtensionFromName } from '@utils/helpers';
 
 const { JSDOM } = jsdom;
 
@@ -51,14 +52,14 @@ const parseGroupingStructureFromPath = (path: string): Topic['groupingStructure'
   const [name] = path.split('\\').reverse();
   let [, group, grouping] = path.split('\\').reverse();
   // In case we have a (grouping) and no group
-  if (group.startsWith('(')) {
+  if (!!group && group.startsWith('(')) {
     [group, grouping] = [grouping, group];
   }
 
   return {
     name,
     group: group ?? null,
-    grouping: grouping ?? null
+    grouping: grouping?.replace('(', '')?.replace(')', '') ?? null
   };
 };
 
@@ -82,11 +83,16 @@ export const getTopics = (): Topic[] => {
   dirTree(basePath, { extensions: /\.md/ }, (item) => {
     const topic: Topic = {
       ...item,
+      formattedName: removeExtensionFromName(item.name),
       groupingStructure: parseGroupingStructureFromPath(item.path.replace(basePath, '')),
       id: createHash('sha1').update(item.path).digest('base64'),
     };
 
-    topics.push(topic);
+    if (item.name === 'Candidate.md') {
+      topics.unshift(topic);
+    } else {
+      topics.push(topic);
+    }
   });
   return topics;
 };

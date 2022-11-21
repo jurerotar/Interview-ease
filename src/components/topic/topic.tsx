@@ -22,7 +22,6 @@ const Topic: React.FC<TopicProps> = (props) => {
 
   const [questions, setQuestions] = useState<QuestionType[]>(topic.questions!);
 
-  const title: string = removeExtensionFromName(topic.name);
   const amountOfQuestions: number = questions.length;
   const hasAddedAdditionalQuestions: boolean = topic.questions!.length !== questions.length;
 
@@ -35,7 +34,7 @@ const Topic: React.FC<TopicProps> = (props) => {
       data-block-type="topic"
       className={clsx(topic.id === selectedTopic ? 'flex' : 'hidden', styles.topic, 'w-full flex-col gap-4')}
     >
-      <h2 className="text-3xl font-semibold dark:text-white">{title}</h2>
+      <h2 className="text-3xl font-semibold dark:text-white underline underline-offset-2 decoration-2 decoration-green-500">{topic.formattedName}</h2>
       <span className="dark:text-gray-200">{t('TOPIC.AMOUNT_OF_QUESTIONS', { amountOfQuestions })}</span>
       <Divider />
       {questions.map((question: QuestionType, index: number) => (
@@ -44,6 +43,7 @@ const Topic: React.FC<TopicProps> = (props) => {
             topicId={topic.id}
             index={index}
             question={question}
+            showRatings={topic.formattedName !== 'Candidate'}
           />
           {index !== questions.length && <Divider />}
         </Fragment>

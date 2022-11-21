@@ -13,6 +13,7 @@ export type GroupingStructure = {
 export type Topic = {
   id: string;
   name: string;
+  formattedName: string;
   path?: string;
   groupingStructure?: GroupingStructure;
   questions?: Question[];
