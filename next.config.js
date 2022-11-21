@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const { NEXT_PUBLIC_ENVIRONMENT } = process.env;
+// const { NEXT_PUBLIC_ENVIRONMENT } = process.env;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -10,7 +10,7 @@ const nextConfig = {
   swcMinify: true,
   trailingSlash: false,
   typescript: {
-    ignoreBuildErrors: NEXT_PUBLIC_ENVIRONMENT === 'local'
+    ignoreBuildErrors: true // NEXT_PUBLIC_ENVIRONMENT === 'local'
   },
   eslint: {
     ignoreDuringBuilds: true // NEXT_PUBLIC_ENVIRONMENT === 'local'
