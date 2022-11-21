@@ -10,7 +10,7 @@ const resolvePath = (object: Obj, path: string): string => {
 };
 
 const t = (path: string, replaces?: Record<string, string | number>): string => {
-  let translation = resolvePath(translations, path);
+  let translation = resolvePath(translations, path) ?? path;
   if (replaces) {
     Object.keys(replaces).forEach((key: string) => {
       translation = translation.replaceAll(`{${key}}`, `${replaces[key]}`);

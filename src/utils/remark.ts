@@ -1,4 +1,3 @@
-import { VFile } from 'vfile';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkStringify from 'remark-stringify';
@@ -6,11 +5,14 @@ import remarkPrism from 'remark-prism';
 import remarkHtml from 'remark-html';
 import { readFile } from 'fs/promises';
 import jsdom from 'jsdom';
-import { Question, Structure } from '@interfaces/common';
+import { Question, Topic } from '@interfaces/common';
+import dirTree from 'directory-tree';
+import { createHash } from 'crypto';
+import { removeExtensionFromName } from '@utils/helpers';
 
 const { JSDOM } = jsdom;
 
-export const transformMarkdownToHTML = async (src: string): Promise<VFile> => {
+export const transformMarkdownToHTML = async (src: string) => {
   const markdown = await readFile(src, {
     encoding: 'utf-8'
   });
@@ -46,29 +48,51 @@ export const splitTopicNodesIntoQuestions = (html: string): Question[] => {
   });
 };
 
-export const addQuestionsToStructure = async (structureArray: Structure[]): Promise<Structure[]> => {
-  const children: Structure[] = [];
-  const promises: Promise<VFile>[] = [];
+const parseGroupingStructureFromPath = (path: string): Topic['groupingStructure'] => {
+  const [name] = path.split('\\').reverse();
+  let [, group, grouping] = path.split('\\').reverse();
+  // In case we have a (grouping) and no group
+  if (!!group && group.startsWith('(')) {
+    [group, grouping] = [grouping, group];
+  }
 
-  const traverse = async (array: Structure[]) => {
-    array.forEach((structure: Structure) => {
-      if (structure.hasOwnProperty('children')) {
-        traverse(structure.children);
-      }
-      if (structure.path.endsWith('.md')) {
-        children.push(structure);
-        promises.push(transformMarkdownToHTML(structure.path));
-      }
-    });
+  return {
+    name,
+    group: group ?? null,
+    grouping: grouping?.replace('(', '')?.replace(')', '') ?? null
   };
+};
 
-  await traverse(structureArray);
+export const attachQuestionsToTopics = async (topics: Topic[]): Promise<Topic[]> => {
+  const resolvedPromises = await Promise.all(topics.map((topic: Topic) => transformMarkdownToHTML(topic.path!)));
+  return topics.map((topic: Topic, index: number) => {
+    const {
+      path,
+      ...rest
+    } = topic;
 
-  const resolvedPromises = await Promise.all(promises);
-
-  resolvedPromises.forEach((vFile: Awaited<VFile>, index) => {
-    children[index].questions = splitTopicNodesIntoQuestions(vFile.value as string);
+    rest.questions = splitTopicNodesIntoQuestions(resolvedPromises[index].value as string);
+    return rest;
   });
+};
 
-  return structureArray;
+export const getTopics = (): Topic[] => {
+  const basePath = `${process.cwd()}\\questions\\`;
+  const topics: Topic[] = [];
+
+  dirTree(basePath, { extensions: /\.md/ }, (item) => {
+    const topic: Topic = {
+      ...item,
+      formattedName: removeExtensionFromName(item.name),
+      groupingStructure: parseGroupingStructureFromPath(item.path.replace(basePath, '')),
+      id: createHash('sha1').update(item.path).digest('base64'),
+    };
+
+    if (item.name === 'Candidate.md') {
+      topics.unshift(topic);
+    } else {
+      topics.push(topic);
+    }
+  });
+  return topics;
 };

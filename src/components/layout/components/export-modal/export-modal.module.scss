@@ -1,0 +1,15 @@
+.subheading {
+  &::before {
+    content: attr(data-grouping);
+    position: absolute;
+    left: 0;
+    top: 7px;
+    white-space: nowrap;
+    overflow-x: visible;
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: rgb(156, 163, 175);
+    text-transform: uppercase;
+  }
+}

@@ -1,51 +1,37 @@
 import React, { useState, createContext, useContext } from 'react';
-import { Structure } from '@interfaces/common';
-
-const flattenStructure = (structureArray: Structure[]) => {
-  const flattenedStructure: Structure[] = [];
-
-  const traverse = (array: Structure[]) => {
-    array.forEach((structure: Structure) => {
-      if (structure.hasOwnProperty('children')) {
-        traverse(structure.children);
-      }
-      if (structure.hasOwnProperty('id')) {
-        flattenedStructure.push(structure);
-      }
-    });
-  };
-
-  traverse(structureArray);
-
-  return flattenedStructure;
-};
+import { Topic } from '@interfaces/common';
 
 export type ApplicationContextProps = {
-  structure: Structure[];
+  topics: Topic[];
   children: React.ReactNode;
 };
 
 type ApplicationContextValues = {
-  structure: Structure[];
-  selectedTopic: Structure['id'];
-  setSelectedTopic: React.Dispatch<React.SetStateAction<Structure['id']>>;
-  flattenedTopics: Structure[];
+  topics: Topic[];
+  selectedTopic: Topic['id'];
+  setSelectedTopic: React.Dispatch<React.SetStateAction<Topic['id']>>;
 };
 
 const ApplicationContext = createContext<ApplicationContextValues>({} as never);
 
 const ApplicationProvider: React.FC<ApplicationContextProps> = (props) => {
-  const { structure, children } = props;
+  const {
+    topics = [],
+    children
+  } = props;
 
-  const [flattenedTopics] = useState<Structure[]>(flattenStructure(structure));
-  const [selectedTopic, setSelectedTopic] = useState<Structure['id']>(flattenedTopics[0]?.id ?? '');
+  const [selectedTopic, setSelectedTopic] = useState<Topic['id']>(() => {
+    if (Array.isArray(topics) && topics.length > 0) {
+      return topics[0].id;
+    }
+    return '';
+  });
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value: ApplicationContextValues = {
-    flattenedTopics,
+    topics,
     selectedTopic,
-    setSelectedTopic,
-    structure
+    setSelectedTopic
   };
 
   return <ApplicationContext.Provider value={value}>{children}</ApplicationContext.Provider>;
