@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const typography = require('@tailwindcss/typography');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -6,7 +7,10 @@ module.exports = {
   content: ['pages/**/*.tsx', 'src/**/*.tsx'],
   theme: {
     fontFamily: {
-      sans: ['var(--default-font)', ...defaultTheme.fontFamily.sans],
+      sans: [
+        'var(--montserrat-font)',
+        ...defaultTheme.fontFamily.sans
+      ],
     },
     screens: {
       xs: '425px',
@@ -18,5 +22,5 @@ module.exports = {
       '3xl': '1920px',
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [typography],
 };

@@ -17,7 +17,6 @@
     "incremental": true,
     "paths": {
       "@interfaces/*": ["src/interfaces/*"],
-      "@enums/*": ["src/enums/*"],
       "@styles/*": ["src/styles/*"],
       "@components/*": ["src/components/*"],
       "@providers/*": ["src/providers/*"],

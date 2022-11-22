@@ -1,0 +1,2 @@
+- ### What are traits?
+  > Traits are a mechanism that lets you create reusable code in PHP and similar languages where multiple inheritances are not supported. It’s not possible to instantiate it on its own.

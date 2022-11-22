@@ -16,7 +16,7 @@ const ApplicationContext = createContext<ApplicationContextValues>({} as never);
 
 const ApplicationProvider: React.FC<ApplicationContextProps> = (props) => {
   const {
-    topics = [],
+    topics,
     children
   } = props;
 

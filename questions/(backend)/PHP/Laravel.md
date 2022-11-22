@@ -1,0 +1,2 @@
+- ### What are migrations in Laravel?
+  > In simple, Migrations are used to create database schemas in Laravel. In migration files, we store which table to create, update or delete.  Each migration file is stored with its timestamp of creation to keep track of the order in which it was created. As migrations go up with your code in GitHub, GitLab, etc, whenever anyone clones your project they can run `PHP artisan migrate` to run those migrations to create the database in their environment

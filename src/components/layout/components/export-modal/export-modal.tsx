@@ -50,6 +50,7 @@ function ExportModal() {
     setRatedTopics(rest);
   };
 
+  // @ts-ignore
   const updateQuestions = (event) => {
     parsedQuestions.current = event.target.value;
   };
@@ -59,8 +60,9 @@ function ExportModal() {
     if (Object.keys(ratedTopics).length > 0) {
       string += `\n\n# ${t('EXPORT.REPORT.INDIVIDUAL_TOPIC_RATINGS')}\n\n`;
       Object.keys(ratedTopics).forEach((id: Topic['id']) => {
-        const { formattedName } = topics.find((topic: Topic) => topic.id === id)!;
-        string += `${formattedName}: ${ratedTopics[id]}/5\n`;
+        const topic = topics.find((ratedTopic: Topic) => ratedTopic.id === id)!;
+        // eslint-disable-next-line max-len
+        string += `${clsx(!!topic.groupingStructure?.group && `${topic.groupingStructure.group} - `, topic.formattedName)}: ${ratedTopics[id]}/5\n`;
       });
     }
     if (parsedQuestions.current !== '') {
@@ -83,13 +85,13 @@ function ExportModal() {
             <TabHeading>{t('EXPORT.EDIT_TAB.TAB_LABEL')}</TabHeading>
             <div className="flex flex-col gap-2">
               <TabSectionHeading>{t('EXPORT.EDIT_TAB.TOPIC_RATING')}</TabSectionHeading>
-              <ul className="flex flex-col gap-2">
+              <ul className="flex flex-col gap-2 max-h-[300px] overflow-y-scroll">
                 {topics.map((topic: Topic) => (
                   <li className="flex gap-2 items-end">
                     <span
-                      className={clsx(styles.subheading, (!!topic.groupingStructure?.grouping || !!topic.groupingStructure?.grouping) && 'pt-6', 'relative dark:text-white font-semibold')}
+                      className={clsx(styles.subheading, (!!topic.groupingStructure?.grouping || !!topic.groupingStructure?.group) && 'pt-6', 'relative dark:text-white font-semibold')}
                       /* eslint-disable-next-line max-len,tailwindcss/no-custom-classname */
-                      data-grouping={clsx(topic.groupingStructure?.grouping && `${topic.groupingStructure?.grouping} /`, topic.groupingStructure?.grouping)}
+                      data-grouping={clsx(topic.groupingStructure?.grouping && `${topic.groupingStructure?.grouping} /`, topic.groupingStructure?.group)}
                     >
                       {topic.formattedName}
                     </span>

@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-// const { NEXT_PUBLIC_ENVIRONMENT } = process.env;
+const { NEXT_PUBLIC_ENVIRONMENT } = process.env;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -10,10 +10,10 @@ const nextConfig = {
   swcMinify: true,
   trailingSlash: false,
   typescript: {
-    ignoreBuildErrors: true // NEXT_PUBLIC_ENVIRONMENT === 'local'
+    ignoreBuildErrors: NEXT_PUBLIC_ENVIRONMENT === 'local'
   },
   eslint: {
-    ignoreDuringBuilds: true // NEXT_PUBLIC_ENVIRONMENT === 'local'
+    ignoreDuringBuilds: NEXT_PUBLIC_ENVIRONMENT === 'local'
   },
   experimental: {
     fontLoaders: [
@@ -26,7 +26,9 @@ const nextConfig = {
     ]
   },
   webpack: (config, options, dev, isServer) => {
-    config.module.rules.push({
+    const modifiedConfig = { ...config };
+
+    modifiedConfig.module.rules.push({
       test: /\.mdx/,
       use: [
         options.defaultLoaders.babel,
@@ -39,8 +41,8 @@ const nextConfig = {
     });
 
     if (!dev && !isServer) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
+      modifiedConfig.resolve.alias = {
+        ...modifiedConfig.resolve.alias,
         'react/jsx-runtime.js': 'preact/compat/jsx-runtime',
         react: 'preact/compat',
         'react-dom/test-utils': 'preact/test-utils',
@@ -48,7 +50,7 @@ const nextConfig = {
       };
     }
 
-    return config;
+    return modifiedConfig;
   }
 };
 

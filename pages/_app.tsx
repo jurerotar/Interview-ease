@@ -1,15 +1,12 @@
-import type { AppProps } from 'next/app';
 import '@styles/app.scss';
 import React from 'react';
-import { Montserrat } from '@next/font/google';
 import Head from 'next/head';
-import { PreferencesProvider } from '@providers/preferences-context';
-import { ApplicationProvider } from '@providers/application-context';
-import Layout from '@components/layout/layout';
+import type { AppProps } from 'next/app';
+import { Montserrat } from '@next/font/google';
 
 const montserrat = Montserrat();
 
-const App: React.FC<AppProps> = (props) => {
+const App = (props: AppProps) => {
   const { Component, pageProps } = props;
 
   return (
@@ -22,19 +19,15 @@ const App: React.FC<AppProps> = (props) => {
         <style
           dangerouslySetInnerHTML={{
             __html: `
-          :root {
-            --default-font: ${montserrat.className}
-          }`
+            :root {
+              --montserrat-font: ${montserrat.className}
+            }
+          `
           }}
         />
+
       </Head>
-      <ApplicationProvider topics={pageProps.topics}>
-        <PreferencesProvider colorScheme="dark">
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </PreferencesProvider>
-      </ApplicationProvider>
+      <Component {...pageProps} />
     </>
   );
 };

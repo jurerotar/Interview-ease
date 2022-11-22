@@ -1,32 +1,75 @@
 {
   "settings": {
     "node": {
-      "extensions": [".js", ".jsx", ".ts", ".tsx"],
-      "moduleDirectory": ["node_modules"]
+      "extensions": [
+        ".js",
+        ".jsx",
+        ".ts",
+        ".tsx"
+      ],
+      "moduleDirectory": [
+        "node_modules"
+      ]
     },
     "import/resolver": {
       "typescript": {}
     }
   },
-  "extends": ["next/core-web-vitals", "airbnb", "airbnb/hooks", "plugin:tailwindcss/recommended"],
-  "plugins": ["tailwindcss"],
+  "extends": [
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:tailwindcss/recommended"
+  ],
+  "plugins": [
+    "tailwindcss"
+  ],
   "rules": {
-    "max-len": ["error", {
-      "code": 140,
-      "ignoreStrings": true
-    }],
+    "max-len": [
+      "error",
+      {
+        "code": 140,
+        "ignoreStrings": true
+      }
+    ],
     "linebreak-style": "off",
     "no-prototype-builtins": "off",
-    "arrow-body-style": ["off", "as-needed"],
+    "arrow-body-style": [
+      "off",
+      "as-needed"
+    ],
     "object-curly-newline": "off",
     "comma-dangle": "off",
     "no-param-reassign": "warn",
     "react/function-component-definition": "off",
     "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [
+          ".tsx"
+        ]
+      }
+    ],
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
     "react/jsx-no-useless-fragment": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": [
+          "jsx",
+          "global"
+        ]
+      }
+    ],
+    "tailwindcss/no-custom-classname": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ]
   }
 }

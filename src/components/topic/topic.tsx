@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from 'react';
 import clsx from 'clsx';
-import { removeExtensionFromName } from '@utils/helpers';
 import Divider from '@components/common/divider/divider';
 import { useApplication } from '@providers/application-context';
 import { Question as QuestionType, Topic as TopicType } from '@interfaces/common';
@@ -34,7 +33,12 @@ const Topic: React.FC<TopicProps> = (props) => {
       data-block-type="topic"
       className={clsx(topic.id === selectedTopic ? 'flex' : 'hidden', styles.topic, 'w-full flex-col gap-4')}
     >
-      <h2 className="text-3xl font-semibold dark:text-white underline underline-offset-2 decoration-2 decoration-green-500">{topic.formattedName}</h2>
+      <h2 className="text-3xl font-semibold dark:text-white underline underline-offset-2 decoration-2 decoration-green-500">
+        {!!topic.groupingStructure?.group && (
+          `${topic.groupingStructure.group} / `
+        )}
+        {topic.formattedName}
+      </h2>
       <span className="dark:text-gray-200">{t('TOPIC.AMOUNT_OF_QUESTIONS', { amountOfQuestions })}</span>
       <Divider />
       {questions.map((question: QuestionType, index: number) => (

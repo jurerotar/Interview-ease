@@ -1,0 +1,2 @@
+- ### What is the difference between static, public, and void?
+  > Public declared variables can be accessed from anywhere in the application. Static declared variables can be accessed globally without needing to create an instance of the class. Void is a type modifier which states the method and is used to specify the return type of a method in C#.

@@ -46,7 +46,7 @@ const LayoutProvider: React.FC<LayoutContextProps> = (props) => {
     <LayoutContext.Provider value={value}>
       {isModalShown && (
         <div className="h-screen w-screen fixed z-20 top-0 left-0 backdrop-blur-sm bg-black/50">
-          <div className="m-4 shadow-md max-h-[calc(100%-2rem)] w-[calc(100%-2rem)] lg:max-w-[600px] lg:top-1/2 lg:-translate-y-1/2 lg:left-1/2 lg:-translate-x-1/2 rounded-md pt-8 p-4 md:pt-4 dark:bg-[#080808] relative scrollbar-hide overflow-y-scroll">
+          <div className="scrollbar-hide m-4 shadow-md max-h-[calc(100%-2rem)] w-[calc(100%-2rem)] lg:max-w-[600px] lg:top-1/2 lg:-translate-y-1/2 lg:left-1/2 lg:-translate-x-1/2 rounded-md pt-8 p-4 md:pt-4 dark:bg-[#080808] relative overflow-y-scroll">
             <button
               type="button"
               className="absolute top-4 right-4"

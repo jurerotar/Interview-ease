@@ -9,7 +9,7 @@ const MarkdownContainer: React.FC<MarkdownContainerProps> = (props) => {
 
   return (
     <div
-      className="prose flex w-full max-w-full flex-col prose-p:my-2 prose-blockquote:my-1 prose-blockquote:font-normal prose-blockquote:not-italic prose-headings:dark:text-white prose-blockquote:dark:text-white"
+      className="prose dark:prose-invert flex w-full max-w-full flex-col prose-p:my-2 prose-blockquote:my-1 prose-blockquote:font-normal prose-blockquote:not-italic prose-blockquote:dark:text-white"
       {...rest}
     >
       {children}
