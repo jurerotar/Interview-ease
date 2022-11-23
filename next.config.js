@@ -15,31 +15,8 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: NEXT_PUBLIC_ENVIRONMENT === 'local'
   },
-  experimental: {
-    fontLoaders: [
-      {
-        loader: '@next/font/google',
-        options: {
-          subsets: ['latin', 'latin-ext']
-        }
-      }
-    ]
-  },
   webpack: (config, options, dev, isServer) => {
     const modifiedConfig = { ...config };
-
-    modifiedConfig.module.rules.push({
-      test: /\.mdx/,
-      use: [
-        options.defaultLoaders.babel,
-        {
-          loader: '@mdx-js/loader',
-          /** @type {import('@mdx-js/loader').Options} */
-          options: {}
-        }
-      ]
-    });
-
     if (!dev && !isServer) {
       modifiedConfig.resolve.alias = {
         ...modifiedConfig.resolve.alias,

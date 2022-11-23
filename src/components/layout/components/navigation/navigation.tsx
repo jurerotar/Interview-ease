@@ -16,7 +16,7 @@ const TopicButton: React.FC<TopicButtonProps> = (props) => {
   return (
     <button
       type="button"
-      className={clsx(isSelected && 'underline decoration-green-400 decoration-2', 'p-1 w-fit text-sm font-bold uppercase transition-colors duration-300 dark:text-gray-300 hover:dark:text-white')}
+      className={clsx(isSelected && 'underline decoration-green-400 decoration-2', 'w-fit p-1 text-sm font-bold uppercase transition-colors duration-300 dark:text-gray-300 hover:dark:text-white')}
       {...rest}
     >
       {children}
@@ -49,11 +49,12 @@ const Grouping: React.FC<GroupingProps> = (props) => {
       <span className="text-xs font-bold uppercase text-gray-400">
         {name === null ? t('LAYOUT.SIDEBAR.UNCATEGORIZED_TOPICS') : name}
       </span>
-      <div className="flex flex-col gap-2 pl-2 border-l-2 border-l-[#3a3b3c]">
+      <div className="flex flex-col gap-2 border-l-2 border-l-[#3a3b3c] pl-2">
         {topicsGroupedByGroups.map((topicGroup) => (
           <Accordion
             key={topicGroup.name}
             summary={topicGroup?.name ?? t('LAYOUT.SIDEBAR.UNCATEGORIZED_TOPICS')}
+            open={false}
           >
             {topicGroup.topics.map((topic: Topic) => (
               <div
@@ -93,7 +94,7 @@ function Navigation() {
   });
 
   return (
-    <div className="flex flex-col gap-4 w-full">
+    <div className="flex w-full flex-col gap-4">
       {candidateTopic && (
         <TopicButton
           isSelected={selectedTopic === candidateTopic.id}

@@ -4,7 +4,9 @@ import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { Montserrat } from '@next/font/google';
 
-const montserrat = Montserrat();
+const montserrat = Montserrat({
+  subsets: ['latin', 'latin-ext']
+});
 
 const App = (props: AppProps) => {
   const { Component, pageProps } = props;
@@ -25,7 +27,6 @@ const App = (props: AppProps) => {
           `
           }}
         />
-
       </Head>
       <Component {...pageProps} />
     </>
